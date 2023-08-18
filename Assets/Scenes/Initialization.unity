@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   persistentManagersScene: {fileID: 11400000, guid: 60934564c5f7e034fae0e40bdf6da0a9, type: 2}
-  showLoadScreen: 0
+  showLoadScreen: 1
 --- !u!4 &2037219604
 Transform:
   m_ObjectHideFlags: 0

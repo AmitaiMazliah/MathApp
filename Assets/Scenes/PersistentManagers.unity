@@ -309,13 +309,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b928d1d6f59854499ed82bdeef2305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadScene: {fileID: 0}
-  onExitGame: {fileID: 0}
-  toggleLoadingScreen: {fileID: 0}
-  onSceneLoaded: {fileID: 0}
-  onSceneReady: {fileID: 0}
-  playMusicOn: {fileID: 0}
-  audioConfig: {fileID: 0}
+  loadScene: {fileID: 11400000, guid: 129cdb815c8952146b53799eddc23b75, type: 2}
+  onExitGame: {fileID: 11400000, guid: 20ab9e76d8d7c0745881e692bf59c1af, type: 2}
+  toggleLoadingScreen: {fileID: 11400000, guid: da348eeab139c524eab5e500a148cd5a, type: 2}
+  onSceneLoaded: {fileID: 11400000, guid: 5030753ef7bb5644382f78df01e8906e, type: 2}
+  onSceneReady: {fileID: 11400000, guid: 68835cc998a222c488b4d62e1304a7bc, type: 2}
+  playMusicOn: {fileID: 11400000, guid: 78f467ff799953d4d80b02c4708e9810, type: 2}
+  audioConfig: {fileID: 11400000, guid: bb7da4c6f90efa646b6358c9657d1e79, type: 2}
 --- !u!4 &1235284783
 Transform:
   m_ObjectHideFlags: 0
