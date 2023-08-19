@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MathApp.UI
 {
-	public class GameplayUI : SceneUI
+	public class MenuUI : SceneUI
 	{
 		[SerializeField]
 		private float gameOverScreenDelay = 3f;

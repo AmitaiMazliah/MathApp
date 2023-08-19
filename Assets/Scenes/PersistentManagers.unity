@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264e39e87b1999846b6b1d15443cac87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lobbyScene: {fileID: 11400000, guid: b6077f856d50c4a4d962c7baba91858e, type: 2}
+  lobbyScene: {fileID: 11400000, guid: 0286e0c95ae6dc74e811076784a625eb, type: 2}
   loadSceneEvent: {fileID: 11400000, guid: 129cdb815c8952146b53799eddc23b75, type: 2}
 --- !u!4 &576939493
 Transform:
