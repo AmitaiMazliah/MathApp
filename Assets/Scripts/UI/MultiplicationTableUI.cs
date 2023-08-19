@@ -1,9 +1,7 @@
 namespace MathApp.UI
 {
-	public class MenuUI : SceneUI
+	public class MultiplicationTableUI : SceneUI
 	{
-		// SceneUI INTERFACE
-
 		protected override void OnInitializeInternal()
 		{
 			base.OnInitializeInternal();
