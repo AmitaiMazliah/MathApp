@@ -1,3 +1,5 @@
+using MathApp.Audio;
+using MathApp.Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +10,12 @@ namespace MathApp.UI
     {
         [SerializeField] private Image image;
         [SerializeField] private TMP_InputField input;
+
+        [SerializeField] private AudioCueSO correctSound;
+        [SerializeField] private AudioCueSO wrongSound;
+        
+        [SerializeField] AudioCueEventChannelSO playSoundOn;
+        [SerializeField] AudioConfigurationSO audioConfig;
 
         private int answer;
 
@@ -38,11 +46,13 @@ namespace MathApp.UI
             
             if (int.Parse(value) == answer)
             {
-                image.color = Color.green;
+                // image.color = Color.green;
+                playSoundOn.RaisePlayEvent(correctSound, audioConfig);
             }
             else
             {
-                image.color = Color.red;
+                // image.color = Color.red;
+                playSoundOn.RaisePlayEvent(wrongSound, audioConfig);
             }
         }
     }
