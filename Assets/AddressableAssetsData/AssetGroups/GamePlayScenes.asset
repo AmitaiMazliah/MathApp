@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: GamePlayScenes
+  m_EditorClassIdentifier: 
+  m_GroupName: GamePlayScenes
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 446b49552d98e7544a285c625ffdd700
+  m_SerializeEntries:
+  - m_GUID: b4c642a8faad2ae4fb290e466abd20c1
+    m_Address: Assets/Scenes/MultiplicationTable.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 2a3d6b94665a8f44aa292452fe9d2588, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ded8560e62289684085443a5b036f525, type: 2}
+    - {fileID: 11400000, guid: 770d2d33574662a4a8c194dbc8cb6617, type: 2}
