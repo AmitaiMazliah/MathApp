@@ -1,41 +1,33 @@
 using MathApp.Events;
+using MathApp.SceneManagement;
 using UnityEngine;
-using TMPro;
 
 namespace MathApp.UI
 {
 	public class UIMainMenuView : UITabsView
     {
         [SerializeField] UIButton quitButton;
+        [SerializeField] private UIButton multiplicationTableButton;
+
+        [SerializeField] private GameSceneSO multiplicationTableScene;
 
         [SerializeField] VoidEventChannelSO onExitGame;
+        [SerializeField] LoadEventChannelSO loadSceneEvent;
 
 		protected override void OnInitialize()
 		{
 			base.OnInitialize();
 
-			// creditsButton.onClick.AddListener(OnCreditsButton);
-			// changeNicknameButton.onClick.AddListener(OnChangeNicknameButton);
 			quitButton.onClick.AddListener(OnQuitButton);
+			multiplicationTableButton.onClick.AddListener(ChangeScene);
 		}
 
         protected override void OnDeinitialize()
 		{
-			// creditsButton.onClick.RemoveListener(OnCreditsButton);
-			// changeNicknameButton.onClick.RemoveListener(OnChangeNicknameButton);
 			quitButton.onClick.RemoveListener(OnQuitButton);
+			multiplicationTableButton.onClick.RemoveListener(ChangeScene);
 
 			base.OnDeinitialize();
-		}
-
-		protected override void OnOpen()
-		{
-			base.OnOpen();
-		}
-
-		protected override void OnClose()
-		{
-			base.OnClose();
 		}
 
 		protected override bool OnBackAction()
@@ -65,5 +57,10 @@ namespace MathApp.UI
 				}
 			};
 		}
+
+        private void ChangeScene()
+        {
+	        loadSceneEvent.RaiseEvent(multiplicationTableScene, true);
+        }
 	}
 }

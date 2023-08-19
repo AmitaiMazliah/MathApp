@@ -1067,7 +1067,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 267a83cb8d16455992a4732cb2d2d646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultViews: []
+  defaultViews:
+  - {fileID: 754120016}
   SFXEventChannel: {fileID: 0}
   clickSoundConfig: {fileID: 0}
   soundEffects: {fileID: 0}
