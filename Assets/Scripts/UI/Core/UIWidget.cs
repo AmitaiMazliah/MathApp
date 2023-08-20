@@ -9,17 +9,12 @@ namespace MathApp.UI
     {
         public bool IsVisible { get; private set; }
 
-        // PROTECTED MEMBERS
-
         protected bool IsInitalized { get; private set; }
         protected SceneUI SceneUI { get; private set; }
+        protected SceneContext Context { get { return SceneUI.Context; } }
         protected UIWidget Owner { get; private set; }
 
-        // PRIVATE MEMBERS
-
         private List<UIWidget> children = new List<UIWidget>(16);
-
-        // PUBLIC METHODS
 
         public void PlayActionSound(UIAction action)
         {
@@ -42,8 +37,6 @@ namespace MathApp.UI
         		SceneUI.PlaySound(sound);
         	}
         }
-
-        // INTERNAL METHODS
 
         internal void Initialize(SceneUI sceneUI, UIWidget owner)
         {
@@ -175,9 +168,7 @@ namespace MathApp.UI
 
             children.RemoveAt(childIndex);
         }
-
-        // MONOBEHAVIOR
-
+        
         protected void OnEnable()
         {
             Visible();
@@ -187,9 +178,7 @@ namespace MathApp.UI
         {
             Hidden();
         }
-
-        // UIWidget INTERFACE
-
+        
         public virtual bool IsActive() { return true; }
 
         protected virtual void OnInitialize() { }
@@ -197,8 +186,6 @@ namespace MathApp.UI
         protected virtual void OnVisible() { }
         protected virtual void OnHidden() { }
         protected virtual void OnTick() { }
-
-        // PRIVATE MEMBERS
 
         private static void GetChildWidgets(Transform transform, List<UIWidget> widgets)
         {

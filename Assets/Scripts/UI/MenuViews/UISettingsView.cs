@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using MathApp;
 using MathApp.UI;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UISettingsView : UIView
 {
@@ -81,7 +83,7 @@ public class UISettingsView : UIView
     {
         base.OnClose();
 
-        // Context.RuntimeSettings.Options.DiscardChanges();
+        Context.RuntimeSettings.Options.DiscardChanges();
 
         NotifyVolumeChanged();
     }
@@ -103,12 +105,14 @@ public class UISettingsView : UIView
 
     private void LoadValues()
     {
-        // var runtimeSettings = Context.RuntimeSettings;
+        var runtimeSettings = Context.RuntimeSettings;
 
-        // masterVolumeSlider.SetOptionsValueFloat(runtimeSettings.Options.GetValue(RuntimeSettings.KeyMasterVolume));
-        // musicVolumeSlider.SetOptionsValueFloat(runtimeSettings.Options.GetValue(RuntimeSettings.KeyMusicVolume));
-        // effectsVolumeSlider.SetOptionsValueFloat(
-        //     runtimeSettings.Options.GetValue(RuntimeSettings.KeyEffectsVolume));
+        masterVolumeSlider.SetOptionsValueFloat(OptionType.MasterVolume,
+            runtimeSettings.Options.GetFloat(OptionType.MasterVolume));
+        musicVolumeSlider.SetOptionsValueFloat(OptionType.MusicVolume,
+            runtimeSettings.Options.GetFloat(OptionType.MusicVolume));
+        effectsVolumeSlider.SetOptionsValueFloat(OptionType.SfxVolume,
+            runtimeSettings.Options.GetFloat(OptionType.SfxVolume));
 
         // sensitivitySlider.SetOptionsValueFloat(runtimeSettings.Options.GetValue(RuntimeSettings.KEY_SENSITIVITY));
         // aimSensitivitySlider.SetOptionsValueFloat(runtimeSettings.Options.GetValue(RuntimeSettings.KEY_AIM_SENSITIVITY));
@@ -251,5 +255,28 @@ public class UISettingsView : UIView
             Index = index;
             Resolution = resolution;
         }
+    }
+}
+
+public static class UISliderExtensions
+{
+    public static void SetOptionsValueFloat(this UISlider slider, OptionType type, float value)
+    {
+        var onValueChanged = slider.onValueChanged;
+        slider.onValueChanged = new Slider.SliderEvent();
+
+        slider.onValueChanged = onValueChanged;
+
+        slider.SetValue(value);
+    }
+
+    public static void SetOptionsValueInt(this UISlider slider, OptionType type, int value)
+    {
+        var onValueChanged = slider.onValueChanged;
+        slider.onValueChanged = new Slider.SliderEvent();
+
+        slider.onValueChanged = onValueChanged;
+
+        slider.SetValue(value);
     }
 }

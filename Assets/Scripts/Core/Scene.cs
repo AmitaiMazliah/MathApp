@@ -12,8 +12,6 @@ namespace MathApp
         public bool IsActive { get; private set; }
         public SceneContext Context => context;
 
-        // PRIVATE MEMBERS
-
         [SerializeField] private bool selfInitialize;
         [SerializeField] private SceneContext context;
 
@@ -144,8 +142,6 @@ namespace MathApp
         {
             Deinitialize();
         }
-
-        // PROTECTED METHODS
 
         protected virtual void OnPrepareContext(SceneContext context)
         {

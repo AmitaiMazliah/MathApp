@@ -1,40 +1,38 @@
 using System;
-using MathApp.UI;
+using MathApp;
 using UnityEngine;
 
-namespace MathApp
+[Serializable]
+public class SceneContext
 {
-    [Serializable]
-    public class SceneContext
-    {
-        // Player
+    // Player
 
-        [HideInInspector] public string peerUserID;
+    [HideInInspector] public string peerUserID;
 
-        // General
+    // General
 
-        // public SceneAudio Audio;
-        public SceneUI UI;
-        public ObjectCache ObjectCache;
-        public BoolEventChannelSO changeCursorStateEvent;
-        // public SceneCamera Camera;
-        // public NetworkGame NetworkGame;
+    // public SceneAudio Audio;
+    public SceneUI UI;
+    public ObjectCache ObjectCache;
 
-        // [HideInInspector] public GlobalSettings Settings;
-        // public RuntimeSettings RuntimeSettings;
+    public BoolEventChannelSO changeCursorStateEvent;
+    // public SceneCamera Camera;
+    // public NetworkGame NetworkGame;
 
-        // Gameplay
+    // [HideInInspector] public GlobalSettings Settings;
+    public RuntimeSettings RuntimeSettings;
 
-        // public Announcer        Announcer;
+    // Gameplay
 
-        [HideInInspector] public bool isVisible;
-        [HideInInspector] public bool hasInput;
+    // public Announcer        Announcer;
 
-        // [HideInInspector] public NetworkRunner runner;
-        // [HideInInspector] public GameplayMode gameplayMode;
-        // [HideInInspector] public PlayerRef localPlayerRef;
-        // [HideInInspector] public PlayerRef observedPlayerRef;
-        // [HideInInspector] public Agent observedAgent;
-        // [HideInInspector] public MatchDetails matchDetails;
-    }
+    [HideInInspector] public bool isVisible;
+    [HideInInspector] public bool hasInput;
+
+    // [HideInInspector] public NetworkRunner runner;
+    // [HideInInspector] public GameplayMode gameplayMode;
+    // [HideInInspector] public PlayerRef localPlayerRef;
+    // [HideInInspector] public PlayerRef observedPlayerRef;
+    // [HideInInspector] public Agent observedAgent;
+    // [HideInInspector] public MatchDetails matchDetails;
 }

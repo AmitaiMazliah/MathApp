@@ -12,8 +12,6 @@ namespace MathApp
         bool isInitialized;
         bool isActive;
 
-        // INTERNAL METHODS
-
         internal void Initialize(Scene scene, SceneContext context)
         {
             if (isInitialized)
@@ -80,8 +78,6 @@ namespace MathApp
 
             isActive = false;
         }
-
-        // GameService INTERFACE
 
         protected virtual void OnInitialize()
         {
