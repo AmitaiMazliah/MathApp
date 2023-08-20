@@ -1,84 +1,77 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
-using MathApp.Audio;
+using MathApp.UI;
 using UnityEngine.EventSystems;
 
-namespace MathApp.UI
+public class UIButton : Button
 {
-    public class UIButton : Button
+    [SerializeField] private bool playClickSound = true;
+    [SerializeField] UIActionSoundMapping customSoundEffects;
+
+    private UIWidget parent;
+
+    private static List<UIWidget> tempWidgetList = new List<UIWidget>(16);
+
+    public void PlayActionSound(UIAction action)
     {
-        // PRIVATE MEMBERS
+        if (playClickSound == false)
+            return;
 
-        [SerializeField] private bool playClickSound = true;
-        [SerializeField] UIActionSoundMapping customSoundEffects;
-
-        private UIWidget parent;
-
-        private static List<UIWidget> tempWidgetList = new List<UIWidget>(16);
-
-        public void PlayActionSound(UIAction action)
+        if (parent == null)
         {
-            if (playClickSound == false)
-                return;
+            tempWidgetList.Clear();
 
-            if (parent == null)
-            {
-                tempWidgetList.Clear();
+            GetComponentsInParent(true, tempWidgetList);
 
-                GetComponentsInParent(true, tempWidgetList);
-
-                parent = tempWidgetList.Count > 0 ? tempWidgetList[0] : null;
-                tempWidgetList.Clear();
-            }
-
-            var customSound = customSoundEffects?.mapping?[action];
-
-            if (customSound != null)
-            {
-                parent.PlaySound(customSound);
-            }
-            else
-            {
-                parent.PlayActionSound(action);
-            }
+            parent = tempWidgetList.Count > 0 ? tempWidgetList[0] : null;
+            tempWidgetList.Clear();
         }
 
-        protected override void Awake()
+        var customSound = customSoundEffects?.mapping?[action];
+
+        if (customSound != null)
         {
-            base.Awake();
+            parent.PlaySound(customSound);
+        }
+        else
+        {
+            parent.PlayActionSound(action);
+        }
+    }
 
-            onClick.AddListener(OnClick);
+    protected override void Awake()
+    {
+        base.Awake();
 
-            if (transition == Transition.Animation)
+        onClick.AddListener(OnClick);
+
+        if (transition == Transition.Animation)
+        {
+            var buttonAnimator = animator;
+            if (buttonAnimator != null)
             {
-                var buttonAnimator = animator;
-                if (buttonAnimator != null)
-                {
-                    buttonAnimator.keepAnimatorStateOnDisable = true;
-                }
+                buttonAnimator.keepAnimatorStateOnDisable = true;
             }
         }
+    }
 
-        protected override void OnDestroy()
-        {
-            onClick.RemoveListener(OnClick);
+    protected override void OnDestroy()
+    {
+        onClick.RemoveListener(OnClick);
 
-            base.OnDestroy();
-        }
+        base.OnDestroy();
+    }
 
-        private void OnClick()
-        {
-            PlayActionSound(UIAction.Click);
-        }
+    private void OnClick()
+    {
+        PlayActionSound(UIAction.Click);
+    }
 
-        public override void OnPointerEnter(PointerEventData eventData)
-        {
-            base.OnPointerEnter(eventData);
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
 
-            PlayActionSound(UIAction.Hover);
-        }
+        PlayActionSound(UIAction.Hover);
     }
 }
