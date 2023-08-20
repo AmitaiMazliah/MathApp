@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MathApp.UI
 {
-    public class UIMultiplicationTableView : UIView
+    public class UIMultiplicationTableView : UITabView
     {
         [SerializeField] private UIList t;
         

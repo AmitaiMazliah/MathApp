@@ -1,9 +1,8 @@
 using MathApp.Events;
-using MathApp.SceneManagement;
 using MathApp.UI;
 using UnityEngine;
 
-public class UIMainMenuView : UIView
+public class UiMenuView : UIView
 {
     [SerializeField] private UIButton quitButton;
     [SerializeField] private UIButton settingButton;

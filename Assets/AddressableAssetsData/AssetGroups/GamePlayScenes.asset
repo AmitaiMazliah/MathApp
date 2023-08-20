@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 446b49552d98e7544a285c625ffdd700
   m_SerializeEntries:
-  - m_GUID: b4c642a8faad2ae4fb290e466abd20c1
-    m_Address: Assets/Scenes/MultiplicationTable.unity
+  - m_GUID: 5c7dd6a8aa8c4804ba7ff17961aae46a
+    m_Address: Assets/Scenes/Menu.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

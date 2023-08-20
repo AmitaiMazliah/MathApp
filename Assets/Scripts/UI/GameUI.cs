@@ -2,7 +2,7 @@ using System.Collections;
 using MathApp.UI;
 using UnityEngine;
 
-public class MainMenuUI : SceneUI
+public class GameUI : SceneUI
 {
     // private UIDeathView deathView;
 
