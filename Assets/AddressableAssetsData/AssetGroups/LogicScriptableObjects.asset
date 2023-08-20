@@ -10,16 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: MenuScenes
+  m_Name: LogicScriptableObjects
   m_EditorClassIdentifier: 
-  m_GroupName: MenuScenes
+  m_GroupName: LogicScriptableObjects
   m_Data:
     m_SerializedData: []
-  m_GUID: 891445e521e2c2441a2d5211c99b53f0
-  m_SerializeEntries: []
+  m_GUID: 0293251e9763baa4392c03184e64f4e2
+  m_SerializeEntries:
+  - m_GUID: 88efcef5053d14545960529a9a6d21ee
+    m_Address: Assets/ScriptableObjects/EventChannels
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2a3d6b94665a8f44aa292452fe9d2588, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 9c41f4b86fa9aeb49924d6806962defd, type: 2}
-    - {fileID: 11400000, guid: 8f71d691fb448734eae400e59c8cccf7, type: 2}
+    - {fileID: 11400000, guid: c1420f86dc188e6428ae8001edd6d69e, type: 2}
+    - {fileID: 11400000, guid: 20731704c45fbc1439ff72e8d82fe738, type: 2}
