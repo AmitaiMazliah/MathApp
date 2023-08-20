@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using MathApp;
 using MathApp.UI;
 using UnityEngine;
@@ -117,7 +118,7 @@ public class UISettingsView : UIView
         // sensitivitySlider.SetOptionsValueFloat(runtimeSettings.Options.GetValue(RuntimeSettings.KEY_SENSITIVITY));
         // aimSensitivitySlider.SetOptionsValueFloat(runtimeSettings.Options.GetValue(RuntimeSettings.KEY_AIM_SENSITIVITY));
 
-        // windowMode.SetValueWithoutNotify(runtimeSettings.Windowed ? 1 : 0);
+        windowMode.SetValueWithoutNotify(runtimeSettings.Options.GetBool(OptionType.FullScreen) ? 0 : 1);
         // graphicsQuality.SetValueWithoutNotify(runtimeSettings.GraphicsQuality);
         // resolution.SetValueWithoutNotify(validResolutions.FindIndex(t => t.Index == runtimeSettings.Resolution));
         // targetFPS.SetOptionsValueInt(runtimeSettings.Options.GetValue(RuntimeSettings.KEY_TARGET_FPS));
@@ -127,15 +128,16 @@ public class UISettingsView : UIView
 
     private void OnConfirmButton()
     {
-        // Context.RuntimeSettings.Options.SaveChanges();
-        //
-        // var runtimeSettings = Context.RuntimeSettings;
+        Context.RuntimeSettings.Options.SaveChanges();
+        
+        var runtimeSettings = Context.RuntimeSettings;
 
-        // var resolution =
-        //     Screen.resolutions[
-        //         runtimeSettings.Resolution < 0 ? Screen.resolutions.Length - 1 : runtimeSettings.Resolution];
-        // Screen.SetResolution(resolution.width, resolution.height, windowMode.value == 0);
-        //
+        var resolution =
+            Screen.resolutions[
+                runtimeSettings.Options.GetInt(OptionType.Resolution) < 0 ? Screen.resolutions.Length - 1 :
+                    runtimeSettings.Options.GetInt(OptionType.Resolution)];
+        Screen.SetResolution(resolution.width, resolution.height, windowMode.value == 0);
+        
         // QualitySettings.SetQualityLevel(runtimeSettings.GraphicsQuality);
         //
         // // Application.targetFrameRate = runtimeSettings.LimitFPS == true ? runtimeSettings.TargetFPS : -1;
@@ -165,9 +167,12 @@ public class UISettingsView : UIView
 
     private void OnVolumeChanged(float value)
     {
-        // Context.RuntimeSettings.MasterVolume = masterVolumeSlider.value;
-        // Context.RuntimeSettings.MusicVolume = musicVolumeSlider.value;
-        // Context.RuntimeSettings.EffectsVolume = effectsVolumeSlider.value;
+        Context.RuntimeSettings.Options.Set(OptionType.MasterVolume,
+            masterVolumeSlider.value.ToString(CultureInfo.InvariantCulture), false);
+        Context.RuntimeSettings.Options.Set(OptionType.MusicVolume,
+            musicVolumeSlider.value.ToString(CultureInfo.InvariantCulture), false);
+        Context.RuntimeSettings.Options.Set(OptionType.SfxVolume,
+            effectsVolumeSlider.value.ToString(CultureInfo.InvariantCulture), false);
 
         NotifyVolumeChanged();
     }

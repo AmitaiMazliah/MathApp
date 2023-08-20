@@ -33,12 +33,9 @@ public class RuntimeSettings : SerializedScriptableObject
 
         // Resolution = GetCurrentResolutionIndex();
 
-        // QualitySettings.vSyncCount = VSync ? 1 : 0;
-        // Application.targetFrameRate = LimitFPS ? TargetFPS : -1;
-
-        // changeMusicVolumeEventChannel.RaiseEvent(MusicVolume);
-        // changeSfxVolumeEventChannel.RaiseEvent(EffectsVolume);
-        // changeMasterVolumeEventChannel.RaiseEvent(MasterVolume);
+        changeMusicVolumeEventChannel.RaiseEvent(Options.GetFloat(OptionType.MusicVolume));
+        changeSfxVolumeEventChannel.RaiseEvent(Options.GetFloat(OptionType.SfxVolume));
+        changeMasterVolumeEventChannel.RaiseEvent(Options.GetFloat(OptionType.MasterVolume));
 
         Options.SaveChanges();
     }
@@ -49,16 +46,16 @@ public class RuntimeSettings : SerializedScriptableObject
         if (resolutions == null || resolutions.Length == 0)
             return -1;
 
-        int currentWidth = Mathf.RoundToInt(Screen.width);
-        int currentHeight = Mathf.RoundToInt(Screen.height);
-        int defaultRefreshRate = resolutions[^1].refreshRate;
+        var currentWidth = Mathf.RoundToInt(Screen.width);
+        var currentHeight = Mathf.RoundToInt(Screen.height);
+        var defaultRefreshRate = resolutions[^1].refreshRateRatio;
 
-        for (int i = 0; i < resolutions.Length; i++)
+        for (var i = 0; i < resolutions.Length; i++)
         {
             var resolution = resolutions[i];
 
             if (resolution.width == currentWidth && resolution.height == currentHeight &&
-                resolution.refreshRate == defaultRefreshRate)
+                resolution.refreshRateRatio.Equals(defaultRefreshRate))
                 return i;
         }
 

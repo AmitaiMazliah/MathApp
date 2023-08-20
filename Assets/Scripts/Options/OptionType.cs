@@ -2,5 +2,7 @@ public enum OptionType
 {
     MasterVolume,
     MusicVolume,
-    SfxVolume
+    SfxVolume,
+    Resolution,
+    FullScreen
 }
