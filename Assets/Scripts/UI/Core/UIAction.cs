@@ -1,8 +1,5 @@
-namespace MathApp.UI
+public enum UIAction
 {
-    public enum UIAction
-    {
-        Click,
-        Hover
-    }
+    Click,
+    Hover
 }

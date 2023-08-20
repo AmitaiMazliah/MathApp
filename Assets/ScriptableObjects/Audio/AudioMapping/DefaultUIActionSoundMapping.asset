@@ -23,12 +23,12 @@ MonoBehaviour:
     SerializationNodes:
     - Name: mapping
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[MathApp.UI.UIAction, Assembly-CSharp],[MathApp.Audio.AudioCueSO,
+      Data: 0|System.Collections.Generic.Dictionary`2[[UIAction, Assembly-CSharp],[MathApp.Audio.AudioCueSO,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MathApp.UI.UIAction,
-        Assembly-CSharp]], mscorlib
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[UIAction, Assembly-CSharp]],
+        mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -40,13 +40,25 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 3
       Data: 0
+    - Name: $v
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
     - Name: $v
       Entry: 6
       Data: 
