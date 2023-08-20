@@ -14,10 +14,8 @@ public class SceneContext
     // public SceneAudio Audio;
     public SceneUI UI;
     public ObjectCache ObjectCache;
-
-    public BoolEventChannelSO changeCursorStateEvent;
+    
     // public SceneCamera Camera;
-    // public NetworkGame NetworkGame;
 
     // [HideInInspector] public GlobalSettings Settings;
     public RuntimeSettings RuntimeSettings;

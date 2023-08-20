@@ -91,6 +91,7 @@ public class UISettingsView : UIView
 
     protected override bool OnBackAction()
     {
+        Close();
         return true;
     }
 

@@ -93,8 +93,6 @@ namespace MathApp
 #endif
         }
 
-        // MONOBEHAVIOUR
-
         protected void Awake()
         {
             if (selfInitialize)
