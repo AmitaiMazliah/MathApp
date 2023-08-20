@@ -192,6 +192,11 @@ namespace MathApp.UI
         {
             SceneUI.Open(view);
         }
+        
+        protected T Toggle<T>() where T : UIView
+        {
+            return SceneUI.Toggle<T>();
+        }
 
         /*
         protected T OpenWithBackView<T>() where T : UICloseView

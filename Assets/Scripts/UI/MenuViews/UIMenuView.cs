@@ -47,6 +47,6 @@ public class UIMainMenuView : UIView
 
     private void OnSettingButton()
     {
-        
+        Toggle<UISettingsView>();
     }
 }
