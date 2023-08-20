@@ -19,6 +19,8 @@ namespace MathApp.UI
 
         private int answer;
 
+        public bool Interactable => input.interactable;
+
         private void OnEnable()
         {
             input.onEndEdit.AddListener(ValidateAnswer);
@@ -38,6 +40,12 @@ namespace MathApp.UI
         public void SetAnswer(int value)
         {
             answer = value;
+        }
+
+        public void Clear()
+        {
+            input.text = string.Empty;
+            image.color = Color.white;
         }
         
         private void ValidateAnswer(string value)

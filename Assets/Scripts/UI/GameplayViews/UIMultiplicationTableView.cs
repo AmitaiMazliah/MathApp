@@ -1,28 +1,32 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MathApp.UI
 {
     public class UIMultiplicationTableView : UITabView
     {
-        [SerializeField] private UIList t;
+        [SerializeField] private UIList tableCells;
+        [SerializeField] private UIButton resetButton;
         
         protected override void OnInitialize()
         {
             base.OnInitialize();
 
-            t.UpdateContent += OnListUpdateContent;
+            tableCells.UpdateContent += OnListUpdateContent;
+            resetButton.onClick.AddListener(ResetTable);
         }
 
         protected override void OnDeinitialize()
         {
-            t.UpdateContent -= OnListUpdateContent;
+            tableCells.UpdateContent -= OnListUpdateContent;
+            resetButton.onClick.RemoveListener(ResetTable);
 
             base.OnDeinitialize();
         }
         
         protected override void OnOpen()
         {
-            t.Refresh(121, false);
+            tableCells.Refresh(121, false);
         }
 
         protected override void OnClose()
@@ -46,6 +50,15 @@ namespace MathApp.UI
             else
             {
                 cell.SetAnswer(row * column);
+            }
+        }
+
+        private void ResetTable()
+        {
+            foreach (var tableCellsItem in tableCells.Items)
+            {
+                var cell = tableCellsItem as UIMultiplicationTableCell;
+                if (cell.Interactable) cell.Clear();
             }
         }
     }

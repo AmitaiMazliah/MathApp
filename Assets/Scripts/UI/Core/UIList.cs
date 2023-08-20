@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MathApp.UI
 {
@@ -21,6 +22,8 @@ namespace MathApp.UI
             set => SetSelection(value, true);
         }
         public int Count => dataCount;
+
+        public IEnumerable<TRContent> Items => items.Select(i => i.Content);
 
         [SerializeField] private bool allowSelection = true;
         [SerializeField] private bool allowDeselection = true;
@@ -76,9 +79,7 @@ namespace MathApp.UI
                 SetSelection(-1, true);
             }
         }
-
-        // MONOBEHAVIOR
-
+        
         protected void Awake()
         {
             if (dataCount == 0)
@@ -86,9 +87,7 @@ namespace MathApp.UI
                 itemInstance.SetActive(false);
             }
         }
-
-        // PRIVATE METHODS
-
+        
         private void SetSelection(int selection, bool notify, bool force = false)
         {
             if (allowSelection == false)
