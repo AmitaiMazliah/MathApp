@@ -127,17 +127,15 @@ public sealed class Options
         return GetValue(key);
     }
 
-    public void Set(OptionType key, string value, bool saveImmediately)
+    public void Set(OptionType key, string newValue, bool saveImmediately)
     {
         values.TryGetValue(key, out var originalValue);
         
-        if (value.Equals(originalValue))
+        if (newValue.Equals(originalValue))
         {
             dirtyValues.Remove(key); // Remove previous modification if exists
             return;
         }
-
-        var newValue = originalValue;
 
         dirtyValues[key] = newValue;
 

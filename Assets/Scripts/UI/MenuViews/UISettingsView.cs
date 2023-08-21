@@ -5,6 +5,8 @@ using MathApp;
 using MathApp.UI;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class UISettingsView : UIView
@@ -12,8 +14,7 @@ public class UISettingsView : UIView
     [SerializeField] private UISlider masterVolumeSlider;
     [SerializeField] private UISlider musicVolumeSlider;
     [SerializeField] private UISlider effectsVolumeSlider;
-
-    [SerializeField] private UICarousel graphicsQuality;
+    [SerializeField] private UIDropDown languageDropDown;
     [SerializeField] private UICarousel resolution;
     [SerializeField] private UICarousel windowMode;
 
@@ -37,15 +38,8 @@ public class UISettingsView : UIView
         masterVolumeSlider.onValueChanged.AddListener(OnVolumeChanged);
         musicVolumeSlider.onValueChanged.AddListener(OnVolumeChanged);
         effectsVolumeSlider.onValueChanged.AddListener(OnVolumeChanged);
-        //
-        // sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
-        // aimSensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
-        //
-        graphicsQuality.onValueChanged.AddListener(OnGraphicsChanged);
+        languageDropDown.onValueChanged.AddListener(OnLanguageChange);
         resolution.onValueChanged.AddListener(OnGraphicsChanged);
-        // targetFPS.onValueChanged.AddListener(OnTargetFPSChanged);
-        // limitFPS.onValueChanged.AddListener(OnLimitFPSChanged);
-
         windowMode.onValueChanged.AddListener(OnWindowedChanged);
     }
 
@@ -57,15 +51,8 @@ public class UISettingsView : UIView
         masterVolumeSlider.onValueChanged.RemoveListener(OnVolumeChanged);
         musicVolumeSlider.onValueChanged.RemoveListener(OnVolumeChanged);
         effectsVolumeSlider.onValueChanged.RemoveListener(OnVolumeChanged);
-
-        // sensitivitySlider.onValueChanged.RemoveListener(OnSensitivityChanged);
-        // aimSensitivitySlider.onValueChanged.RemoveListener(OnSensitivityChanged);
-        //
-        graphicsQuality.onValueChanged.RemoveListener(OnGraphicsChanged);
+        languageDropDown.onValueChanged.RemoveListener(OnLanguageChange);
         resolution.onValueChanged.RemoveListener(OnGraphicsChanged);
-        // targetFPS.onValueChanged.RemoveListener(OnTargetFPSChanged);
-        // limitFPS.onValueChanged.RemoveListener(OnLimitFPSChanged);
-
         windowMode.onValueChanged.RemoveListener(OnWindowedChanged);
 
         base.OnDeinitialize();
@@ -76,6 +63,7 @@ public class UISettingsView : UIView
         base.OnOpen();
 
         PrepareResolutionDropdown();
+        PrepareLanguagesDropdown();
 
         LoadValues();
     }
@@ -122,9 +110,9 @@ public class UISettingsView : UIView
         windowMode.SetValueWithoutNotify(runtimeSettings.Options.GetBool(OptionType.FullScreen) ? 0 : 1);
         // graphicsQuality.SetValueWithoutNotify(runtimeSettings.GraphicsQuality);
         // resolution.SetValueWithoutNotify(validResolutions.FindIndex(t => t.Index == runtimeSettings.Resolution));
-        // targetFPS.SetOptionsValueInt(runtimeSettings.Options.GetValue(RuntimeSettings.KEY_TARGET_FPS));
-        // limitFPS.SetIsOnWithoutNotify(runtimeSettings.LimitFPS);
-        // vSync.SetValueWithoutNotify(runtimeSettings.VSync ? 0 : 1);
+        var localeName = runtimeSettings.Options.GetString(OptionType.Language);
+        languageDropDown.SetValueWithoutNotify(LocalizationSettings.AvailableLocales.Locales
+            .FindIndex(l => l.LocaleName == localeName));
     }
 
     private void OnConfirmButton()
@@ -133,11 +121,11 @@ public class UISettingsView : UIView
         
         var runtimeSettings = Context.RuntimeSettings;
 
-        var resolution =
-            Screen.resolutions[
-                runtimeSettings.Options.GetInt(OptionType.Resolution) < 0 ? Screen.resolutions.Length - 1 :
-                    runtimeSettings.Options.GetInt(OptionType.Resolution)];
-        Screen.SetResolution(resolution.width, resolution.height, windowMode.value == 0);
+        // var resolution =
+        //     Screen.resolutions[
+        //         runtimeSettings.Options.GetInt(OptionType.Resolution) < 0 ? Screen.resolutions.Length - 1 :
+        //             runtimeSettings.Options.GetInt(OptionType.Resolution)];
+        // Screen.SetResolution(resolution.width, resolution.height, windowMode.value == 0);
         
         // QualitySettings.SetQualityLevel(runtimeSettings.GraphicsQuality);
         //
@@ -177,28 +165,19 @@ public class UISettingsView : UIView
 
         NotifyVolumeChanged();
     }
+    
+    private void OnLanguageChange(int value)
+    {
+        var selectedLocale = LocalizationSettings.AvailableLocales.Locales[value];
+        LocalizationSettings.SelectedLocale = selectedLocale;
+        Context.RuntimeSettings.Options.Set(OptionType.Language, selectedLocale.LocaleName, true);
+    }
 
     void NotifyVolumeChanged()
     {
         sfxVolumeEventChannel.RaiseEvent(effectsVolumeSlider.value);
         musicVolumeEventChannel.RaiseEvent(musicVolumeSlider.value);
         masterVolumeEventChannel.RaiseEvent(masterVolumeSlider.value);
-    }
-
-    private void OnSensitivityChanged(float value)
-    {
-        // Context.RuntimeSettings.Sensitivity = sensitivitySlider.value;
-        // Context.RuntimeSettings.AimSensitivity = aimSensitivitySlider.value;
-    }
-
-    private void OnLimitFPSChanged(int value)
-    {
-        OnGraphicsChanged(-1);
-    }
-
-    private void OnTargetFPSChanged(float value)
-    {
-        OnGraphicsChanged(-1);
     }
 
     private void OnGraphicsChanged(int value)
@@ -248,8 +227,20 @@ public class UISettingsView : UIView
 
         ListPool.Return(options);
     }
+    
+    private void PrepareLanguagesDropdown()
+    {
+        var options = ListPool.Get<TMP_Dropdown.OptionData>(16);
+        foreach (var locale in LocalizationSettings.AvailableLocales.Locales)
+        {
+            options.Add(new TMP_Dropdown.OptionData($"{locale.LocaleName.Split(' ')[0]}"));
+        }
 
-    // HELPERS
+        languageDropDown.ClearOptions();
+        languageDropDown.AddOptions(options);
+
+        ListPool.Return(options);
+    }
 
     private struct ResolutionData
     {
