@@ -1,98 +1,105 @@
+using System.Collections;
 using System.Linq;
+using MathApp.UI;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace MathApp.UI
+public class UIMultiplicationTableView : UITabView
 {
-    public class UIMultiplicationTableView : UITabView
+    [SerializeField] private UIList tableCells;
+    [SerializeField] private UIButton backButton;
+    [SerializeField] private UIButton resetButton;
+
+    [SerializeField] private ParticleSystem confettiEffect;
+
+    private bool completed;
+
+    protected override void OnInitialize()
     {
-        [SerializeField] private UIList tableCells;
-        [SerializeField] private UIButton backButton;
-        [SerializeField] private UIButton resetButton;
+        base.OnInitialize();
 
-        private bool completed;
-        
-        protected override void OnInitialize()
-        {
-            base.OnInitialize();
+        tableCells.UpdateContent += OnListUpdateContent;
+        backButton.onClick.AddListener(Back);
+        resetButton.onClick.AddListener(ResetTable);
+    }
 
-            tableCells.UpdateContent += OnListUpdateContent;
-            backButton.onClick.AddListener(Back);
-            resetButton.onClick.AddListener(ResetTable);
-        }
+    protected override void OnDeinitialize()
+    {
+        tableCells.UpdateContent -= OnListUpdateContent;
+        backButton.onClick.RemoveListener(Back);
+        resetButton.onClick.RemoveListener(ResetTable);
 
-        protected override void OnDeinitialize()
-        {
-            tableCells.UpdateContent -= OnListUpdateContent;
-            backButton.onClick.RemoveListener(Back);
-            resetButton.onClick.RemoveListener(ResetTable);
+        base.OnDeinitialize();
+    }
 
-            base.OnDeinitialize();
-        }
-        
-        protected override void OnOpen()
-        {
-            tableCells.Refresh(121, false);
-        }
+    protected override void OnOpen()
+    {
+        tableCells.Refresh(121, false);
+    }
 
-        protected override void OnClose()
-        {
-            // Context.Announcer.Announce -= OnAnnounce;
-        }
+    protected override void OnClose()
+    {
+        ResetTable();
+        completed = false;
+    }
 
-        protected override void OnTick()
-        {
-            base.OnTick();
+    protected override void OnTick()
+    {
+        base.OnTick();
 
-            if (!completed && tableCells.Items.OfType<UIMultiplicationTableCell>()
-                    .Where(c => c.Interactable).All(c => c.Correct))
-            {
-                completed = true;
-                Debug.Log("done");
-            }
+        if (!completed && tableCells.Items.OfType<UIMultiplicationTableCell>()
+                .Where(c => c.Interactable).All(c => c.Correct))
+        {
+            completed = true;
+            StartCoroutine(Celebrate());
         }
+    }
 
-        void OnListUpdateContent(int index, MonoBehaviour content)
-        {
-            var cell = content as UIMultiplicationTableCell;
-            var column = index / 11;
-            var row = index % 11;
-            if (column == 0)
-            {
-                cell.SetValue(row);
-            }
-            else if (row == 0)
-            {
-                cell.SetValue(column);
-            }
-            else
-            {
-                cell.SetAnswer(row * column);
-            }
-        }
-        
-        private void Back()
-        {
-            ResetTable();
-            Switch<UIMainTabView>();
-        }
+    private IEnumerator Celebrate()
+    {
+        confettiEffect.Play();
+        yield return new WaitForSeconds(2f);
+        confettiEffect.Stop();
+    }
 
-        private void ResetTable()
+    void OnListUpdateContent(int index, MonoBehaviour content)
+    {
+        var cell = content as UIMultiplicationTableCell;
+        var column = index / 11;
+        var row = index % 11;
+        if (column == 0)
         {
-            foreach (var tableCellsItem in tableCells.Items)
-            {
-                var cell = tableCellsItem as UIMultiplicationTableCell;
-                if (cell.Interactable) cell.Clear();
-            }
+            cell.SetValue(row);
         }
-        
-        [Button(ButtonSizes.Medium, ButtonStyle.Box, Expanded = true)]
-        private void CompleteTable()
+        else if (row == 0)
         {
-            tableCells.Items.OfType<UIMultiplicationTableCell>().Where(c => c.Interactable)
-                .ForEach(c => c.Complete());
+            cell.SetValue(column);
         }
+        else
+        {
+            cell.SetAnswer(row * column);
+        }
+    }
+
+    private void Back()
+    {
+        Switch<UIMainTabView>();
+    }
+
+    private void ResetTable()
+    {
+        foreach (var tableCellsItem in tableCells.Items)
+        {
+            var cell = tableCellsItem as UIMultiplicationTableCell;
+            if (cell.Interactable) cell.Clear();
+        }
+    }
+
+    [Button(ButtonSizes.Medium, ButtonStyle.Box, Expanded = true)]
+    private void CompleteTable()
+    {
+        tableCells.Items.OfType<UIMultiplicationTableCell>().Where(c => c.Interactable)
+            .ForEach(c => c.Complete());
     }
 }

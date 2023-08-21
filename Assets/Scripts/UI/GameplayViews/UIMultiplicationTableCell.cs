@@ -48,6 +48,7 @@ namespace MathApp.UI
         {
             input.text = string.Empty;
             image.color = Color.white;
+            answer = null;
         }
 
         public void Complete()
