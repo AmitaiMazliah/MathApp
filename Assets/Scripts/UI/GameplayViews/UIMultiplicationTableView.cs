@@ -9,6 +9,7 @@ namespace MathApp.UI
     public class UIMultiplicationTableView : UITabView
     {
         [SerializeField] private UIList tableCells;
+        [SerializeField] private UIButton backButton;
         [SerializeField] private UIButton resetButton;
 
         private bool completed;
@@ -18,12 +19,14 @@ namespace MathApp.UI
             base.OnInitialize();
 
             tableCells.UpdateContent += OnListUpdateContent;
+            backButton.onClick.AddListener(Back);
             resetButton.onClick.AddListener(ResetTable);
         }
 
         protected override void OnDeinitialize()
         {
             tableCells.UpdateContent -= OnListUpdateContent;
+            backButton.onClick.RemoveListener(Back);
             resetButton.onClick.RemoveListener(ResetTable);
 
             base.OnDeinitialize();
@@ -68,6 +71,12 @@ namespace MathApp.UI
             {
                 cell.SetAnswer(row * column);
             }
+        }
+        
+        private void Back()
+        {
+            ResetTable();
+            Switch<UIMainTabView>();
         }
 
         private void ResetTable()
