@@ -5,17 +5,9 @@ using UnityEngine;
 [Serializable]
 public class SceneContext
 {
-    // Player
-
-    [HideInInspector] public string peerUserID;
-
-    // General
-
     // public SceneAudio Audio;
     public SceneUI UI;
     public ObjectCache ObjectCache;
-    
-    // public SceneCamera Camera;
 
     // [HideInInspector] public GlobalSettings Settings;
     public RuntimeSettings RuntimeSettings;

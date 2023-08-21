@@ -1506,7 +1506,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfInitialize: 1
   context:
-    peerUserID: 
     UI: {fileID: 1910977930}
     ObjectCache: {fileID: 1563788035}
     RuntimeSettings: {fileID: 0}
