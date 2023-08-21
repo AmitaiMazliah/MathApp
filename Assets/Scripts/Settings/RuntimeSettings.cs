@@ -21,12 +21,6 @@ public class RuntimeSettings : SerializedScriptableObject
         Initialize();
     }
 
-    private void OnEnable()
-    {
-        Initialize();
-    }
-
-    [Button(ButtonSizes.Medium, ButtonStyle.Box, Expanded = true)]
     public void Initialize()
     {
         Options.Initialize(defaultOptions, enablePersistency, "Options.V3.");

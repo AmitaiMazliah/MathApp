@@ -163,6 +163,7 @@ public class UISettingsView : UIView
         Context.RuntimeSettings.Options.Set(OptionType.SfxVolume,
             effectsVolumeSlider.value.ToString(CultureInfo.InvariantCulture), false);
 
+        Context.RuntimeSettings.Options.SaveChanges();
         NotifyVolumeChanged();
     }
     

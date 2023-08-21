@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Startup : MonoBehaviour
 {
-    [SerializeField] GameSceneSO lobbyScene;
-
-    [SerializeField] LoadEventChannelSO loadSceneEvent;
+    [SerializeField] private GameSceneSO lobbyScene;
+    [SerializeField] private RuntimeSettings runtimeSettings;
+    [SerializeField] private LoadEventChannelSO loadSceneEvent;
     
     private void Start()
     {
+        runtimeSettings.Initialize();
         loadSceneEvent.RaiseEvent(lobbyScene, true);
     }
 }
