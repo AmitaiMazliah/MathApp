@@ -17,9 +17,11 @@ namespace MathApp.UI
         [SerializeField] AudioCueEventChannelSO playSoundOn;
         [SerializeField] AudioConfigurationSO audioConfig;
 
-        private int answer;
+        private int? answer;
+        private int correctAnswer;
 
         public bool Interactable => input.interactable;
+        public bool Correct => answer == correctAnswer;
 
         private void OnEnable()
         {
@@ -39,7 +41,7 @@ namespace MathApp.UI
 
         public void SetAnswer(int value)
         {
-            answer = value;
+            correctAnswer = value;
         }
 
         public void Clear()
@@ -47,12 +49,20 @@ namespace MathApp.UI
             input.text = string.Empty;
             image.color = Color.white;
         }
+
+        public void Complete()
+        {
+            input.text = correctAnswer.ToString();
+            ValidateAnswer(input.text);
+        }
         
         private void ValidateAnswer(string value)
         {
             if (string.IsNullOrEmpty(value)) return;
+
+            answer = int.Parse(value);
             
-            if (int.Parse(value) == answer)
+            if (Correct)
             {
                 image.color = Color.green;
                 playSoundOn.RaisePlayEvent(correctSound, audioConfig);

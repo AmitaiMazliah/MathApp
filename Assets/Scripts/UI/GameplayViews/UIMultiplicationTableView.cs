@@ -1,3 +1,6 @@
+using System.Linq;
+using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,6 +10,8 @@ namespace MathApp.UI
     {
         [SerializeField] private UIList tableCells;
         [SerializeField] private UIButton resetButton;
+
+        private bool completed;
         
         protected override void OnInitialize()
         {
@@ -33,7 +38,19 @@ namespace MathApp.UI
         {
             // Context.Announcer.Announce -= OnAnnounce;
         }
-        
+
+        protected override void OnTick()
+        {
+            base.OnTick();
+
+            if (!completed && tableCells.Items.OfType<UIMultiplicationTableCell>()
+                    .Where(c => c.Interactable).All(c => c.Correct))
+            {
+                completed = true;
+                Debug.Log("done");
+            }
+        }
+
         void OnListUpdateContent(int index, MonoBehaviour content)
         {
             var cell = content as UIMultiplicationTableCell;
@@ -60,6 +77,13 @@ namespace MathApp.UI
                 var cell = tableCellsItem as UIMultiplicationTableCell;
                 if (cell.Interactable) cell.Clear();
             }
+        }
+        
+        [Button(ButtonSizes.Medium, ButtonStyle.Box, Expanded = true)]
+        private void CompleteTable()
+        {
+            tableCells.Items.OfType<UIMultiplicationTableCell>().Where(c => c.Interactable)
+                .ForEach(c => c.Complete());
         }
     }
 }
