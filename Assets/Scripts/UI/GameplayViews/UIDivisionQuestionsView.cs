@@ -1,3 +1,4 @@
+using MathApp;
 using MathApp.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -24,7 +25,14 @@ public class UIDivisionQuestionsView : UIView
 
         base.OnDeinitialize();
     }
-    
+
+    protected override void OnOpen()
+    {
+        base.OnOpen();
+
+        GenerateQuestion();
+    }
+
     private void Back()
     {
     }
@@ -37,6 +45,20 @@ public class UIDivisionQuestionsView : UIView
     [Button(ButtonSizes.Medium, ButtonStyle.Box, Expanded = true)]
     private void GenerateQuestion()
     {
-        
+        var question = RandomMathQuestionGenerator.Generate(new GenerateQuestionRequest
+        {
+            Operation = QuestionOperation.Divide,
+            Number1Request = new GenerateQuestionNumberRequest
+            {
+                Min = 10,
+                Max = 101
+            },
+            Number2Request = new GenerateQuestionNumberRequest
+            {
+                Min = 2,
+                Max = 10
+            }
+        });
+        questionAndAnswerView.SetQuestion(question);
     }
 }
