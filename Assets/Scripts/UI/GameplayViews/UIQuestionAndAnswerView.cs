@@ -2,17 +2,14 @@
 using MathApp.Events;
 using Sirenix.OdinInspector;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MathApp.UI
 {
     public class UIQuestionAndAnswerView : UIBehaviour
     {
         [SerializeField] private TMP_Text questionText;
-        [SerializeField] private TMP_InputField answerInput;
-        [SerializeField] private Image answerImage;
+        [SerializeField] private UIAnswerView answerView;
         
         [SerializeField] private AudioCueSO correctSound;
         [SerializeField] private AudioCueSO wrongSound;
@@ -24,12 +21,12 @@ namespace MathApp.UI
         
         private void OnEnable()
         {
-            answerInput.onEndEdit.AddListener(ValidateAnswer);
+            answerView.OnAnswerSet += ValidateAnswer;
         }
 
         private void OnDisable()
         {
-            answerInput.onEndEdit.RemoveListener(ValidateAnswer);
+            answerView.OnAnswerSet -= ValidateAnswer;
         }
         
         [Button(ButtonSizes.Medium, ButtonStyle.Box, Expanded = true)]
@@ -49,21 +46,17 @@ namespace MathApp.UI
             this.question = question;
         }
         
-        private void ValidateAnswer(string value)
+        private void ValidateAnswer(decimal answer)
         {
-            if (string.IsNullOrEmpty(value)) return;
-
-            var answer = float.Parse(value);
-
             if (answer == question.Answer)
             {
-                answerImage.color = Color.green;
                 playSoundOn.RaisePlayEvent(correctSound, audioConfig);
+                answerView.SetCorrect(true);
             }
             else
             {
-                answerImage.color = Color.red;
                 playSoundOn.RaisePlayEvent(wrongSound, audioConfig);
+                answerView.SetCorrect(false);
             }
         }
     }

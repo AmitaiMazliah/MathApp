@@ -9,7 +9,7 @@ namespace MathApp
         public int number2;
         public QuestionOperation operation;
 
-        public float Answer
+        public decimal Answer
         {
             get
             {
@@ -18,7 +18,7 @@ namespace MathApp
                     QuestionOperation.Plus => number1 + number2,
                     QuestionOperation.Minus => number1 - number2,
                     QuestionOperation.Multiply => number1 * number2,
-                    QuestionOperation.Divide => number1 / number2,
+                    QuestionOperation.Divide => decimal.Divide(number1, number2),
                     _ => throw new ArgumentOutOfRangeException()
                 };
             }
