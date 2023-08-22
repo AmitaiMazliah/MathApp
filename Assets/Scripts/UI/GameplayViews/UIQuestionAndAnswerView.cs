@@ -28,6 +28,11 @@ namespace MathApp.UI
         {
             answerView.OnAnswerSet -= ValidateAnswer;
         }
+
+        public void ResetAnswer()
+        {
+            answerView.Clear();
+        }
         
         [Button(ButtonSizes.Medium, ButtonStyle.Box, Expanded = true)]
         public void SetQuestion(int num1, int num2, QuestionOperation operation)

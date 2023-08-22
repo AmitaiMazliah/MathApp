@@ -14,7 +14,7 @@ namespace MathApp.UI
         
         public event UnityAction<decimal> OnAnswerSet;
 
-        public decimal Answer { get; private set; }
+        public decimal? Answer { get; private set; }
 
         private Image[] inputImages;
 
@@ -50,7 +50,19 @@ namespace MathApp.UI
                 else inputImage.color = Color.red;
             }
         }
-        
+
+        public void Clear()
+        {
+            wholeNumberInput.text = string.Empty;
+            numeratorInput.text = string.Empty;
+            denominatorInput.text = string.Empty;
+            foreach (var inputImage in inputImages)
+            {
+                inputImage.color = Color.white;
+            }
+            Answer = null;
+        }
+
         private void SetAnswer(string value)
         {
             if (string.IsNullOrEmpty(wholeNumberInput.text) ||
@@ -62,7 +74,7 @@ namespace MathApp.UI
             var denominator = int.Parse(denominatorInput.text);
 
             Answer = wholeNumber + decimal.Divide(numerator, denominator);
-            OnAnswerSet?.Invoke(Answer);
+            OnAnswerSet?.Invoke(Answer.Value);
         }
     }
 }
