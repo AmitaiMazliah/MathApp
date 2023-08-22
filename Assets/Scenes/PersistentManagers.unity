@@ -336,6 +336,7 @@ GameObject:
   - component: {fileID: 453415906}
   - component: {fileID: 453415905}
   - component: {fileID: 453415903}
+  - component: {fileID: 453415907}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -453,6 +454,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &453415907
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453415902}
+  m_Enabled: 1
 --- !u!1 &576939491
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,9 +701,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.12941174, g: 0.8784314, b: 0.258799, a: 1}
+    m_PressedColor: {r: 0.09344962, g: 0.5660378, b: 0.17510094, a: 1}
+    m_SelectedColor: {r: 0.11196155, g: 0.6415094, b: 0.20345408, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -710,7 +719,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 2005350138}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -993,9 +1002,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.12941177, g: 0.87843144, b: 0.25882354, a: 1}
+    m_PressedColor: {r: 0.09411766, g: 0.5647059, b: 0.1764706, a: 1}
+    m_SelectedColor: {r: 0.1137255, g: 0.6431373, b: 0.20392159, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1011,7 +1020,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 780775321}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -1849,9 +1858,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.12941177, g: 0.87843144, b: 0.25882354, a: 1}
+    m_PressedColor: {r: 0.09411766, g: 0.5647059, b: 0.1764706, a: 1}
+    m_SelectedColor: {r: 0.1137255, g: 0.6431373, b: 0.20392159, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1867,7 +1876,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 279268701}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
