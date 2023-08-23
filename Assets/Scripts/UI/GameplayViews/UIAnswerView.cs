@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,26 +21,26 @@ namespace MathApp.UI
 
         private void Awake()
         {
-            inputImages = new[]
-            {
-                wholeNumberInput.GetComponent<Image>(),
-                numeratorInput.GetComponent<Image>(),
-                denominatorInput.GetComponent<Image>(),
-            };
+            var list = new List<Image>();
+            if (wholeNumberInput != null) list.Add(wholeNumberInput.GetComponent<Image>());
+            if (numeratorInput != null) list.Add(numeratorInput.GetComponent<Image>());
+            if (denominatorInput != null) list.Add(denominatorInput.GetComponent<Image>());
+            
+            inputImages = list.ToArray();
         }
 
         private void OnEnable()
         {
-            wholeNumberInput.onEndEdit.AddListener(SetAnswer);
-            numeratorInput.onEndEdit.AddListener(SetAnswer);
-            denominatorInput.onEndEdit.AddListener(SetAnswer);
+            wholeNumberInput?.onEndEdit.AddListener(SetAnswer);
+            numeratorInput?.onEndEdit.AddListener(SetAnswer);
+            denominatorInput?.onEndEdit.AddListener(SetAnswer);
         }
 
         private void OnDisable()
         {
-            wholeNumberInput.onEndEdit.RemoveListener(SetAnswer);
-            numeratorInput.onEndEdit.RemoveListener(SetAnswer);
-            denominatorInput.onEndEdit.RemoveListener(SetAnswer);
+            wholeNumberInput?.onEndEdit.RemoveListener(SetAnswer);
+            numeratorInput?.onEndEdit.RemoveListener(SetAnswer);
+            denominatorInput?.onEndEdit.RemoveListener(SetAnswer);
         }
 
         public void SetCorrect(bool correct)
@@ -54,8 +55,8 @@ namespace MathApp.UI
         public void Clear()
         {
             wholeNumberInput.text = string.Empty;
-            numeratorInput.text = string.Empty;
-            denominatorInput.text = string.Empty;
+            if (numeratorInput != null) numeratorInput.text = string.Empty;
+            if (denominatorInput != null) denominatorInput.text = string.Empty;
             foreach (var inputImage in inputImages)
             {
                 inputImage.color = Color.white;
@@ -65,16 +66,24 @@ namespace MathApp.UI
 
         private void SetAnswer(string value)
         {
-            if (string.IsNullOrEmpty(wholeNumberInput.text) ||
-                string.IsNullOrEmpty(numeratorInput.text) ||
-                string.IsNullOrEmpty(denominatorInput.text)) return;
+            Answer = GetAnswerFromInput();
+            Debug.Log(Answer);
+            if (Answer.HasValue) OnAnswerSet?.Invoke(Answer.Value);
+        }
 
-            var wholeNumber = int.Parse(wholeNumberInput.text);
-            var numerator = int.Parse(numeratorInput.text);
-            var denominator = int.Parse(denominatorInput.text);
+        private decimal? GetAnswerFromInput()
+        {
+            var parsedWholeNumber = int.TryParse(wholeNumberInput.text, out var wholeNumber);
+            var parsedNumerator = int.TryParse(numeratorInput?.text, out var numerator);
+            var parsedDenominator = int.TryParse(denominatorInput?.text, out var denominator);
 
-            Answer = wholeNumber + decimal.Divide(numerator, denominator);
-            OnAnswerSet?.Invoke(Answer.Value);
+            if (!parsedWholeNumber ||
+                numeratorInput != null && !parsedNumerator ||
+                denominatorInput != null && !parsedDenominator) return null;
+
+            if (denominator != 0) return wholeNumber + decimal.Divide(numerator, denominator);
+            
+            return wholeNumber;
         }
     }
 }

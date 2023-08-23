@@ -6,8 +6,10 @@ using UnityEngine;
 public class UIMainTabView : UITabView
 {
     [SerializeField] private UIButton multiplicationTableButton;
+    [SerializeField] private UIButton multiplicationQuestionsButton;
     [SerializeField] private UIButton divideQuestionsButton;
     
+    [SerializeField] private GameSceneSO multiplicationQuestionsScene;
     [SerializeField] private GameSceneSO divideQuestionsScene;
     [SerializeField] private LoadEventChannelSO loadSceneEvent;
 
@@ -16,13 +18,15 @@ public class UIMainTabView : UITabView
         base.OnInitialize();
 
         multiplicationTableButton.onClick.AddListener(OnMultiplicationTableButtonClick);
-        divideQuestionsButton.onClick.AddListener(ChangeScene);
+        multiplicationQuestionsButton.onClick.AddListener(() => ChangeScene(multiplicationQuestionsScene));
+        divideQuestionsButton.onClick.AddListener(() => ChangeScene(divideQuestionsScene));
     }
 
     protected override void OnDeinitialize()
     {
         multiplicationTableButton.onClick.RemoveListener(OnMultiplicationTableButtonClick);
-        divideQuestionsButton.onClick.RemoveListener(ChangeScene);
+        multiplicationQuestionsButton.onClick.AddListener(() => ChangeScene(multiplicationQuestionsScene));
+        divideQuestionsButton.onClick.RemoveListener(() => ChangeScene(divideQuestionsScene));
 
         base.OnDeinitialize();
     }
@@ -40,8 +44,8 @@ public class UIMainTabView : UITabView
         Switch<UIMultiplicationTableView>();
     }
     
-    private void ChangeScene()
+    private void ChangeScene(GameSceneSO scene)
     {
-        loadSceneEvent.RaiseEvent(divideQuestionsScene, true);
+        loadSceneEvent.RaiseEvent(scene, true);
     }
 }

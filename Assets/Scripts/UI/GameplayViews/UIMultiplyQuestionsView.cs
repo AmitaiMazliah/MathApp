@@ -1,0 +1,74 @@
+using MathApp;
+using MathApp.Events;
+using MathApp.SceneManagement;
+using MathApp.UI;
+using Sirenix.OdinInspector;
+using UnityEngine;
+
+public class UIMultiplyQuestionsView : UIView
+{
+    [SerializeField] private UIButton backButton;
+    [SerializeField] private UIButton resetButton;
+    [SerializeField] private UIButton nextQuestionButton;
+
+    [SerializeField] private UIQuestionAndAnswerView questionAndAnswerView;
+    
+    [SerializeField] private GameSceneSO menuScene;
+    [SerializeField] private LoadEventChannelSO loadSceneEvent;
+
+    protected override void OnInitialize()
+    {
+        base.OnInitialize();
+
+        backButton.onClick.AddListener(Back);
+        resetButton.onClick.AddListener(ResetAnswer);
+        nextQuestionButton.onClick.AddListener(GenerateQuestion);
+    }
+
+    protected override void OnDeinitialize()
+    {
+        backButton.onClick.RemoveListener(Back);
+        resetButton.onClick.RemoveListener(ResetAnswer);
+        nextQuestionButton.onClick.RemoveListener(GenerateQuestion);
+
+        base.OnDeinitialize();
+    }
+
+    protected override void OnOpen()
+    {
+        base.OnOpen();
+
+        GenerateQuestion();
+    }
+
+    private void Back()
+    {
+        loadSceneEvent.RaiseEvent(menuScene, true);
+    }
+
+    private void ResetAnswer()
+    {
+        questionAndAnswerView.ResetAnswer();
+    }
+    
+    [Button(ButtonSizes.Medium, ButtonStyle.Box, Expanded = true)]
+    private void GenerateQuestion()
+    {
+        var question = RandomMathQuestionGenerator.Generate(new GenerateQuestionRequest
+        {
+            Operation = QuestionOperation.Multiply,
+            Number1Request = new GenerateQuestionNumberRequest
+            {
+                Min = 1,
+                Max = 11
+            },
+            Number2Request = new GenerateQuestionNumberRequest
+            {
+                Min = 1,
+                Max = 11
+            }
+        });
+        questionAndAnswerView.SetQuestion(question);
+        ResetAnswer();
+    }
+}
