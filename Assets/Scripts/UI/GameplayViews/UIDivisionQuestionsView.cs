@@ -69,5 +69,6 @@ public class UIDivisionQuestionsView : UIView
             }
         });
         questionAndAnswerView.SetQuestion(question);
+        ResetAnswer();
     }
 }
