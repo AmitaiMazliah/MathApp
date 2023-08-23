@@ -1,4 +1,6 @@
 using MathApp;
+using MathApp.Events;
+using MathApp.SceneManagement;
 using MathApp.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,6 +12,9 @@ public class UIDivisionQuestionsView : UIView
     [SerializeField] private UIButton nextQuestionButton;
 
     [SerializeField] private UIQuestionAndAnswerView questionAndAnswerView;
+    
+    [SerializeField] private GameSceneSO menuScene;
+    [SerializeField] private LoadEventChannelSO loadSceneEvent;
 
     protected override void OnInitialize()
     {
@@ -38,6 +43,7 @@ public class UIDivisionQuestionsView : UIView
 
     private void Back()
     {
+        loadSceneEvent.RaiseEvent(menuScene, true);
     }
 
     private void ResetAnswer()

@@ -2101,6 +2101,8 @@ MonoBehaviour:
   resetButton: {fileID: 774807894}
   nextQuestionButton: {fileID: 886109171}
   questionAndAnswerView: {fileID: 1690743891917718963}
+  menuScene: {fileID: 11400000, guid: 0286e0c95ae6dc74e811076784a625eb, type: 2}
+  loadSceneEvent: {fileID: 11400000, guid: 129cdb815c8952146b53799eddc23b75, type: 2}
 --- !u!224 &1979736747 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8775263998215850467, guid: 7e817f0313a3ad1499e9753b07f7cd74, type: 3}
