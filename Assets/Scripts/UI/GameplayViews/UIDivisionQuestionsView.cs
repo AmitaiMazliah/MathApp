@@ -7,6 +7,7 @@ public class UIDivisionQuestionsView : UIView
 {
     [SerializeField] private UIButton backButton;
     [SerializeField] private UIButton resetButton;
+    [SerializeField] private UIButton nextQuestionButton;
 
     [SerializeField] private UIQuestionAndAnswerView questionAndAnswerView;
 
@@ -16,12 +17,14 @@ public class UIDivisionQuestionsView : UIView
 
         backButton.onClick.AddListener(Back);
         resetButton.onClick.AddListener(ResetAnswer);
+        nextQuestionButton.onClick.AddListener(GenerateQuestion);
     }
 
     protected override void OnDeinitialize()
     {
         backButton.onClick.RemoveListener(Back);
         resetButton.onClick.RemoveListener(ResetAnswer);
+        nextQuestionButton.onClick.RemoveListener(GenerateQuestion);
 
         base.OnDeinitialize();
     }
