@@ -26,6 +26,26 @@ public static class BuildScript
         BuildPipeline.BuildPlayer(buildPlayerOptions);
         Console.WriteLine("Built.");
     }
+    
+    [MenuItem("Build/Mac")]
+    public static void BuildMac()
+    {
+        PlayerSettings.SetScriptingBackend(BuildTargetGroup.Standalone, ScriptingImplementation.IL2CPP);
+        var buildPlayerOptions = new BuildPlayerOptions
+        {
+            scenes = new[] { initScene },
+            locationPathName = "Builds/Mac/MathApp.exe",
+            target = BuildTarget.StandaloneOSX,
+            options = BuildOptions.CompressWithLz4HC
+        };
+
+        AddressableAssetSettings.CleanPlayerContent();
+        AddressableAssetSettings.BuildPlayerContent();
+
+        Console.WriteLine("Building...");
+        BuildPipeline.BuildPlayer(buildPlayerOptions);
+        Console.WriteLine("Built.");
+    }
 
     [MenuItem("Build/Web")]
     public static void BuildWeb()
