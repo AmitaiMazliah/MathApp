@@ -30,6 +30,10 @@ public class RuntimeSettings : SerializedScriptableObject
         changeMusicVolumeEventChannel.RaiseEvent(Options.GetFloat(OptionType.MusicVolume));
         changeSfxVolumeEventChannel.RaiseEvent(Options.GetFloat(OptionType.SfxVolume));
         changeMasterVolumeEventChannel.RaiseEvent(Options.GetFloat(OptionType.MasterVolume));
+        
+        var localeName = Options.GetString(OptionType.Language);
+        var locale = LocalizationSettings.AvailableLocales.Locales.Find(l => l.LocaleName.StartsWith(localeName));
+        LocalizationSettings.SelectedLocale = locale;
 
         Options.SaveChanges();
     }

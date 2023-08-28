@@ -1,6 +1,7 @@
 using MathApp.Events;
 using MathApp.SceneManagement;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class Startup : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Startup : MonoBehaviour
     
     private void Start()
     {
+        LocalizationSettings.InitializationOperation.WaitForCompletion();
         runtimeSettings.Initialize();
         loadSceneEvent.RaiseEvent(lobbyScene, true);
     }
