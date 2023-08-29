@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Multiplication Table</title>
+	<style>
+		body {
+			background-color: gray;
+		}
+
+		.container {
+			width: 100vw;
+			height: 100vh;
+		}
+
+		.center {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.questionContainer {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+		}
+
+		p {
+			color: white;
+			font-size: 24px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div>
+			<button type="button" onclick="document.location.href='../index.html'">
+				<i class="fa-solid fa-chevron-left"></i>
+			</button>
+		</div>
+		<div class="center">
+			<div class="questionContainer">
+				<p>5 x 5 =</p>
+				<input type="number" min="0" max="100" onkeydown="onKeyDown(this, 7, 7)"
+					onblur="validateAnswer(this, 7, 7)" />
+			</div>
+		</div>
+	</div>
+	<script src="https://kit.fontawesome.com/7b5b6a3454.js" crossorigin="anonymous"></script>
+	<script>
+		let successAudio = new Audio('../audio/success_bell.mp3');
+		let failureAudio = new Audio('../audio/failure.mp3');
+
+		function getRandomArbitrary(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+
+		function generateQuestion() {
+			let number1 = getRandomArbitrary(1, 10);
+			let number2 = getRandomArbitrary(1, 10);
+
+			return {
+				number1,
+				number2
+			};
+		}
+
+		function onKeyDown(element, number1, number2) {
+			if (event.key === 'Enter') {
+				validateAnswer(element, number1, number2);
+			}
+		}
+
+		function validateAnswer(element, number1, number2) {
+			let answer = element.valueAsNumber;
+			if (answer === number1 * number2) {
+				element.style.backgroundColor = 'green';
+				successAudio.play();
+				element.correct = true;
+			} else {
+				element.style.backgroundColor = 'red';
+				failureAudio.play();
+				element.correct = false;
+			}
+
+			if (inputs.every(i => i.correct)) {
+				confetti.start();
+			}
+		}
+
+		function reset() {
+			for (let i = 0; i < inputs.length; i++) {
+				inputs[i].value = '';
+				inputs[i].style.backgroundColor = 'white';
+			}
+			confetti.stop();
+		}
+	</script>
+</body>
+
+</html>
