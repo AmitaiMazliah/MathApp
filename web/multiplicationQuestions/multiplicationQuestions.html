@@ -5,12 +5,22 @@
 	<title>Multiplication Table</title>
 	<style>
 		body {
-			background-color: gray;
+			background-color: white;
 		}
 
 		.container {
 			width: 100vw;
 			height: 100vh;
+		}
+
+		.header {
+			width: 100vw;
+			height: 10vh;
+		}
+
+		.mainBody {
+			width: 100vw;
+			height: 90vh;
 		}
 
 		.center {
@@ -19,6 +29,13 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+		}
+
+		.board {
+			width: 50vw;
+			height: 50vh;
+			background-color: #317d2c;
+			border-radius: 25px;
 		}
 
 		.questionContainer {
@@ -38,16 +55,28 @@
 
 <body>
 	<div class="container">
-		<div>
+		<div class="header">
 			<button type="button" onclick="document.location.href='../index.html'">
 				<i class="fa-solid fa-chevron-left"></i>
 			</button>
 		</div>
-		<div class="center">
-			<div class="questionContainer">
-				<p>5 x 5 =</p>
-				<input type="number" min="0" max="100" onkeydown="onKeyDown(this, 7, 7)"
-					onblur="validateAnswer(this, 7, 7)" />
+		<div class="mainBody">
+			<div class="center">
+				<div class="board">
+					<div class="center">
+						<div class="questionContainer">
+							<p id="questionText"></p>
+							<input type="number" pattern="[0-9]*" inputmode="numeric" min="0" max="100"
+								onkeydown="onKeyDown(this, 7, 7)" onblur="validateAnswer(this, 7, 7)" />
+						</div>
+						<div>
+							<button type="button" onclick="generateQuestion()">
+								<i class="fa-solid fa-chevron-left"></i>
+								<span>הבא</span>
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -56,40 +85,42 @@
 		let successAudio = new Audio('../audio/success_bell.mp3');
 		let failureAudio = new Audio('../audio/failure.mp3');
 
-		function getRandomArbitrary(min, max) {
-			return Math.random() * (max - min) + min;
+		let questionTextElement = document.getElementById('questionText');
+		let question;
+
+		function getRandomInt(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
 		}
 
 		function generateQuestion() {
-			let number1 = getRandomArbitrary(1, 10);
-			let number2 = getRandomArbitrary(1, 10);
+			let number1 = getRandomInt(1, 11);
+			let number2 = getRandomInt(1, 11);
 
-			return {
+			question = {
 				number1,
 				number2
 			};
+			questionTextElement.innerText = `${number1} x ${number2} =`
 		}
 
-		function onKeyDown(element, number1, number2) {
+		function onKeyDown(element) {
 			if (event.key === 'Enter') {
-				validateAnswer(element, number1, number2);
+				validateAnswer(element);
 			}
 		}
 
-		function validateAnswer(element, number1, number2) {
+		function validateAnswer(element) {
 			let answer = element.valueAsNumber;
-			if (answer === number1 * number2) {
+			if (answer === question.number1 * question.number2) {
 				element.style.backgroundColor = 'green';
 				successAudio.play();
-				element.correct = true;
+			} else if (isNaN(answer)) {
+				element.style.backgroundColor = 'white';
 			} else {
 				element.style.backgroundColor = 'red';
 				failureAudio.play();
-				element.correct = false;
-			}
-
-			if (inputs.every(i => i.correct)) {
-				confetti.start();
 			}
 		}
 
@@ -98,8 +129,9 @@
 				inputs[i].value = '';
 				inputs[i].style.backgroundColor = 'white';
 			}
-			confetti.stop();
 		}
+
+		generateQuestion();
 	</script>
 </body>
 
