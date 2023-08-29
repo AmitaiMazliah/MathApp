@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Multiplication Table</title>
-		<style>
-			body{
-				background-color: gray;
-			}
-			table{
-				color: white; 
-				top:50%; 
-				left:50%; 
-				position:absolute; 
-				margin-top:-260px; 
-				margin-left:-274px;
-				border: 1px solid white; 
-				border-collapse: collapse;
-			}
-			td{
-				padding: 12px; 
-				text-align: center
-			}
-			th{
-				font-size: 25px
-			}
-			.bold{
-				font-weight: bold; 
-				font-size: 20px
-			}
-		</style>
-	</head>
-	<body>
-		<button type="button" onclick="document.location.href='./multiplicationTable/multiplicationTable.html'">לוח הכפל</button>
-	</body>
+
+<head>
+  <title>Multiplication Table</title>
+  <style>
+    body {
+      background-color: gray;
+      /* background: url(./imgs/background.jpg) no-repeat center center fixed; */
+    }
+
+    .container {
+      width: 100%;
+      height: 100vh;
+    }
+
+    .center {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="center">
+      <button type="button" onclick="document.location.href='./multiplicationTable/multiplicationTable.html'">
+        לוח הכפל
+      </button>
+    </div>
+  </div>
+</body>
+
 </html>

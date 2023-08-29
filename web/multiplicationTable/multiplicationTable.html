@@ -1,174 +1,225 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Multiplication Table</title>
-		<style>
-			body{
-				background-color: gray;
-			}
-			table{
-				color: white; 
-				top:50%; 
-				left:50%; 
-				position:absolute; 
-				margin-top:-260px; 
-				margin-left:-274px;
-				border: 1px solid white; 
-				border-collapse: collapse;
-			}
-			td{
-				padding: 12px; 
-				text-align: center
-			}
-			th{
-				font-size: 25px
-			}
-			.bold{
-				font-weight: bold; 
-				font-size: 20px
-			}
-		</style>
-	</head>
-	<body>
-		<table border="1px";>
-			<thead>
-				<tr>
-					<th colspan="10">
-						10 x 10 Multiplication Table 
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="bold">
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
-					<td>5</td>
-					<td>6</td>
-					<td>7</td>
-					<td>8</td>
-					<td>9</td>
-					<td>10</td>
-				</tr>
-			
-				<tr>
-					<td class="bold">2</td>
-					<td>4</td>
-					<td>6</td>
-					<td>8</td>
-					<td>10</td>
-					<td>12</td>
-					<td>14</td>
-					<td>16</td>
-					<td>18</td>
-					<td>20</td>
-				</tr>
-			
-				<tr>
-						<td class="bold">3</td>
+
+<head>
+	<title>Multiplication Table</title>
+	<style>
+		body {
+			background-color: gray;
+		}
+
+		.container {
+			width: 100%;
+			height: 100vh;
+		}
+
+		.center {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		table {
+			color: white;
+			border: 1px solid white;
+			border-collapse: collapse;
+		}
+
+		td {
+			padding: 12px;
+			text-align: center
+		}
+
+		th {
+			font-size: 25px
+		}
+
+		.bold {
+			font-weight: bold;
+			font-size: 20px
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="center">
+			<table border="1px" ;>
+				<tbody>
+					<tr class="bold">
+						<td></td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
 						<td>6</td>
-						<td>9</td>
-						<td>12</td>
-						<td>15</td>
-						<td>18</td>
-						<td>21</td>
-						<td>24</td>
-						<td>27</td>
-						<td>30</td>
-				</tr>
-			
-				<tr>
-						<td class="bold">4</td>
+						<td>7</td>
 						<td>8</td>
-						<td>12</td>
-						<td>16</td>
-						<td>20</td>
-						<td>24</td>
-						<td>28</td>
-						<td>32</td>
-						<td>36</td>
-						<td>40</td>
-				</tr>
-			
-				<tr>
-						<td class="bold">5</td>
+						<td>9</td>
 						<td>10</td>
-						<td>15</td>
-						<td>20</td>
-						<td>25</td>
-						<td>30</td>
-						<td>35</td>
-						<td>40</td>
-						<td>45</td>
-						<td>50</td>
-				</tr>
-			
-				<tr>
+					</tr>
+
+					<tr>
+						<td class="bold">1</td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 1, 1)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 2, 1)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 3, 1)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 4, 1)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 5, 1)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 6, 1)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 7, 1)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 8, 1)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 9, 1)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 10, 1)" /></td>
+					</tr>
+
+					<tr>
+						<td class="bold">2</td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 1, 2)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 2, 2)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 3, 2)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 4, 2)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 5, 2)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 6, 2)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 7, 2)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 8, 2)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 9, 2)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 10, 2)" /></td>
+					</tr>
+
+					<tr>
+						<td class="bold">3</td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 1, 3)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 2, 3)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 3, 3)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 4, 3)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 5, 3)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 6, 3)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 7, 3)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 8, 3)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 9, 3)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 10, 3)" /></td>
+					</tr>
+
+					<tr>
+						<td class="bold">4</td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 1, 4)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 2, 4)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 3, 4)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 4, 4)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 5, 4)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 6, 4)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 7, 4)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 8, 4)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 9, 4)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 10, 4)" /></td>
+					</tr>
+
+					<tr>
+						<td class="bold">5</td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 1, 5)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 2, 5)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 3, 5)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 4, 5)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 5, 5)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 6, 5)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 7, 5)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 8, 5)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 9, 5)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 10, 5)" /></td>
+					</tr>
+
+					<tr>
 						<td class="bold">6</td>
-						<td>12</td>
-						<td>18</td>
-						<td>24</td>
-						<td>30</td>
-						<td>36</td>
-						<td>42</td>
-						<td>48</td>
-						<td>54</td>
-						<td>60</td>
-				</tr>
-			
-				<tr>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 1, 6)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 2, 6)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 3, 6)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 4, 6)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 5, 6)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 6, 6)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 7, 6)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 8, 6)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 9, 6)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 10, 6)" /></td>
+					</tr>
+
+					<tr>
 						<td class="bold">7</td>
-						<td>14</td>
-						<td>21</td>
-						<td>28</td>
-						<td>35</td>
-						<td>42</td>
-						<td>49</td>
-						<td>56</td>
-						<td>63</td>
-						<td>70</td>
-				</tr>
-			
-				<tr>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 1, 7)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 2, 7)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 3, 7)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 4, 7)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 5, 7)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 6, 7)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 7, 7)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 8, 7)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 9, 7)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 10, 7)" /></td>
+					</tr>
+
+					<tr>
 						<td class="bold">8</td>
-						<td>16</td>
-						<td>24</td>
-						<td>32</td>
-						<td>40</td>
-						<td>48</td>
-						<td>56</td>
-						<td>64</td>
-						<td>72</td>
-						<td>80</td>
-				</tr>
-			
-				<tr>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 1, 8)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 2, 8)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 3, 8)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 4, 8)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 5, 8)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 6, 8)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 7, 8)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 8, 8)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 9, 8)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 10, 8)" /></td>
+					</tr>
+
+					<tr>
 						<td class="bold">9</td>
-						<td>18</td>
-						<td>27</td>
-						<td>36</td>
-						<td>45</td>
-						<td>54</td>
-						<td>63</td>
-						<td>72</td>
-						<td>81</td>
-						<td>90</td>
-				</tr>
-			
-				<tr>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 1, 9)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 2, 9)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 3, 9)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 4, 9)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 5, 9)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 6, 9)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 7, 9)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 8, 9)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 9, 9)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 10, 9)" /></td>
+					</tr>
+
+					<tr>
 						<td class="bold">10</td>
-						<td>20</td>
-						<td>30</td>
-						<td>40</td>
-						<td>50</td>
-						<td>60</td>
-						<td>70</td>
-						<td>80</td>
-						<td>90</td>
-						<td>100</td>
-				</tr>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 1, 10)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 2, 10)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 3, 10)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 4, 10)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 5, 10)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 6, 10)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 7, 10)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 8, 10)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 9, 10)" /></td>
+						<td><input type="number" min="0" max="100" onkeydown="validateAnswer(this, 10, 10)" /></td>
+					</tr>
 			</table>
-		</tbody>
-	</body>
+		</div>
+	</div>
+	<script>
+		let successAudio = new Audio('../audio/success_bell.mp3');
+		let failureAudio = new Audio('../audio/failure.mp3');
+
+		function validateAnswer(element, number1, number2) {
+			if (event.key === 'Enter') {
+				let answer = element.valueAsNumber;
+				if (answer === number1 * number2) {
+					element.style.backgroundColor = 'green';
+					successAudio.play();
+				} else {
+					element.style.backgroundColor = 'red';
+					failureAudio.play();
+				}
+			}
+		}
+	</script>
+</body>
+
 </html>
