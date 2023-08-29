@@ -9,30 +9,27 @@
 		}
 
 		.container {
-			width: 100%;
+			width: 100vw;
 			height: 100vh;
 		}
 
 		.center {
 			height: 100%;
 			display: flex;
+			flex-direction: column;
 			align-items: center;
 			justify-content: center;
 		}
 
 		table {
 			color: white;
-			border: 1px solid white;
 			border-collapse: collapse;
 		}
 
 		td {
 			padding: 12px;
-			text-align: center
-		}
-
-		th {
-			font-size: 25px
+			text-align: center;
+			border: 1px solid #ccc;
 		}
 
 		.bold {
@@ -44,11 +41,22 @@
 
 <body>
 	<div class="container">
-		<div class="center">
-			<button type="button" onclick="reset()">
-				<i class="fa-solid fa-rotate-left"></i>
+		<div>
+			<button type="button" onclick="document.location.href='../index.html'">
+				<i class="fa-solid fa-chevron-left"></i>
 			</button>
-			<table border="1px" ;>
+		</div>
+		<div class="center">
+			<table>
+				<thead style="text-align: end;">
+					<tr>
+						<th colspan="11">
+							<button type="button" onclick="reset()">
+								<i class="fa-solid fa-rotate-left"></i>
+							</button>
+						</th>
+					</tr>
+				</thead>
 				<tbody>
 					<tr class="bold">
 						<td></td>
@@ -303,6 +311,7 @@
 						<td><input type="number" min="0" max="100" onkeydown="onKeyDown(this, 10, 10)"
 								onblur="validateAnswer(this, 10, 10)" /></td>
 					</tr>
+				</tbody>
 			</table>
 		</div>
 	</div>
