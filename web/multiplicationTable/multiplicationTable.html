@@ -316,14 +316,15 @@
 		</div>
 	</div>
 	<script src="https://kit.fontawesome.com/7b5b6a3454.js" crossorigin="anonymous"></script>
+	<script src="../vfx/confetti.js"></script>
 	<script>
 		let successAudio = new Audio('../audio/success_bell.mp3');
 		let failureAudio = new Audio('../audio/failure.mp3');
-		let inputs = document.querySelectorAll('input[type="number"]');
+		let inputs = Array.from(document.querySelectorAll('input[type="number"]'));
 
 		function onKeyDown(element, number1, number2) {
 			if (event.key === 'Enter') {
-				onKeyDown(element, number1, number2);
+				validateAnswer(element, number1, number2);
 			}
 		}
 
@@ -332,9 +333,15 @@
 			if (answer === number1 * number2) {
 				element.style.backgroundColor = 'green';
 				successAudio.play();
+				element.correct = true;
 			} else {
 				element.style.backgroundColor = 'red';
 				failureAudio.play();
+				element.correct = false;
+			}
+
+			if (inputs.every(i => i.correct)) {
+				confetti.start();
 			}
 		}
 
@@ -343,6 +350,7 @@
 				inputs[i].value = '';
 				inputs[i].style.backgroundColor = 'white';
 			}
+			confetti.stop();
 		}
 	</script>
 </body>
