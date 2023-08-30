@@ -10,16 +10,26 @@
 			background-color: white;
 		}
 
+		.mainBody>* {
+			flex: 1 0 1;
+		}
+
 		.center {
 			height: 100%;
 			display: flex;
-			flex-direction: column;
+			flex-direction: row;
 			align-items: center;
 			justify-content: center;
+			gap: 10px;
+		}
+
+		.notes {
+			height: 50vh;
+			background-color: #e3eb57;
+			border-radius: 25px;
 		}
 
 		.board {
-			width: 50vw;
 			height: 50vh;
 			background-color: #317d2c;
 			border-radius: 25px;
@@ -54,7 +64,13 @@
 		</div>
 		<div class="mainBody">
 			<div class="center">
-				<div class="board">
+				<div style="flex: 1 5 auto;" class="notes">
+					<div class="center" style="display: flex; flex-direction: column;">
+						<span><b>הרשימות שלי</b></span>
+						<textarea style="width: 80%; height: 80%;" rows="20" cols="1" dir="rtl"></textarea>
+					</div>
+				</div>
+				<div style="flex: 1 1 auto;" class="board">
 					<div class="center">
 						<div class="questionContainer">
 							<p id="questionText"></p>
@@ -75,6 +91,7 @@
 						</div>
 					</div>
 				</div>
+				<div style="flex: 1 5 auto;"> </div>
 			</div>
 		</div>
 	</div>
