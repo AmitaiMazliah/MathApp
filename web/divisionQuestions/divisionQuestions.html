@@ -58,7 +58,7 @@
 <body>
 	<div class="container">
 		<div class="header">
-			<button type="button" onclick="document.location.href='../index.html'">
+			<button class="button-small" role="button" onclick="document.location.href='../index.html'">
 				<i class="fa-solid fa-chevron-left"></i>
 			</button>
 		</div>
@@ -71,7 +71,7 @@
 					</div>
 				</div>
 				<div style="flex: 1 1 auto;" class="board">
-					<div class="center">
+					<div class="center" style="flex-direction: column;">
 						<div class="questionContainer">
 							<p id="questionText"></p>
 							<input id="whole" type="number" pattern="[0-9]*" inputmode="numeric" min="0" max="100"
@@ -84,7 +84,7 @@
 							</div>
 						</div>
 						<div>
-							<button type="button" onclick="generateQuestion()">
+							<button class="button-small" role="button" onclick="generateQuestion()">
 								<i class="fa-solid fa-chevron-left"></i>
 								<span>הבא</span>
 							</button>
