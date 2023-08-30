@@ -113,6 +113,8 @@
 		}
 
 		function generateQuestion() {
+			reset();
+
 			let number1 = getRandomInt(10, 101);
 			let number2 = getRandomInt(2, 11);
 
@@ -159,8 +161,8 @@
 		}
 
 		function resetInput(input) {
-			input[i].value = '';
-			input[i].style.backgroundColor = 'white';
+			input.value = '';
+			input.style.backgroundColor = 'white';
 		}
 
 		generateQuestion();
