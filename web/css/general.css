@@ -6,12 +6,31 @@
 .header {
     width: 100%;
     height: 10vh;
-    max-height: 50px;
+}
+
+.header>button {
+    height: 100%;
+}
+
+@media (orientation: landscape) {
+    .header {
+        max-height: 50px;
+    }
+}
+
+@media (orientation: portrait) {
+    .header {
+        max-height: 100px;
+    }
+
+    .header>button {
+        width: 10vw;
+    }
 }
 
 .mainBody {
     width: 100%;
-    height: 90vh;
+    height: 88vh;
 }
 
 .button-small {
@@ -46,7 +65,6 @@
     font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 16px;
     font-weight: 500;
-    height: 4rem;
     padding: 0 1.6rem;
     text-align: center;
     text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
@@ -54,11 +72,25 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    width: 20vw;
 }
 
 .button-big:hover .button-small:hover {
     box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
     transition-duration: .1s;
+}
+
+@media (orientation: landscape) {
+    .button-big {
+        height: 10vh;
+    }
+}
+
+@media (orientation: portrait) {
+    .button-big {
+        height: 5vh;
+        font-size: 24px;
+    }
 }
 
 @media (min-width: 768px) {
